@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>三级复选框</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    input[type=checkbox] {
+        margin-right: 10px;
+    }
+    
+    .second-panel {
+        margin-left: 20px;
+    }
+    
+    .third-panel {
+        margin-left: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="first-panel">
+        基础设置
+        <input type="checkbox" class="checkbox1">
+        <div class="second-panel">
+            微信消失
+            <input type="checkbox" class="checkbox2">
+            <div class="third-panel">
+                图文回复
+                <input type="checkbox" class="checkbox3"> 语音回复
+                <input type="checkbox" class="checkbox3"> 关键字回复
+                <input type="checkbox" class="checkbox3"> 关注时回复
+                <input type="checkbox" class="checkbox3">
+            </div>
+        </div>
+        <div class="second-panel">
+            微信消失
+            <input type="checkbox" class="checkbox2">
+            <div class="third-panel">
+                图文回复
+                <input type="checkbox" class="checkbox3"> 语音回复
+                <input type="checkbox" class="checkbox3"> 关键字回复
+                <input type="checkbox" class="checkbox3"> 关注时回复
+                <input type="checkbox" class="checkbox3">
+            </div>
+        </div>
+        <div class="second-panel">
+            微信消失
+            <input type="checkbox" class="checkbox2">
+            <div class="third-panel">
+                图文回复
+                <input type="checkbox" class="checkbox3"> 语音回复
+                <input type="checkbox" class="checkbox3"> 关键字回复
+                <input type="checkbox" class="checkbox3"> 关注时回复
+                <input type="checkbox" class="checkbox3">
+            </div>
+        </div>
+    </div>
+    <script src="js/zepto.js"></script>
+    <script>
+    $(function(){
+        var c1,c2,c3,k;
+        c1=$('.checkbox1');
+        c2=$('.checkbox2');
+        c3=$('.checkbox3');
+        ck=c1.siblings('.second-panel').find("input[type='checkbox']");
+        k=function(el,state){ //
+            if(state){
+              el.prop('checked',state).attr('data-checked','checked');
+              return;
+            }
+            el.prop('checked',state).removeAttr('data-checked');
+        }
+        c1.click(function(){
+            var a,b,c,d,e,f,g;
+            a=$(this);
+            b=a.attr('data-checked');
+            c=a.parents('.first-panel').find("input[type='checkbox']");
+            if(b){
+                k(a,false);
+                k(c,false);
+            }else{
+                k(a,true);
+                k(c,true);
+            }
+        })
+        c2.click(function(){
+            var a,b,c,d,e,f,g;
+            a=$(this);
+            b=a.attr('data-checked');
+            c=a.siblings().find("input[type='checkbox']");
+            if(b){
+                k(a,false);
+                k(c,false);
+            }else{
+                k(a,true);
+                k(c,true);
+            }
+        })
+        c3.click(function(){
+            var a,b,c,d,e,f,g,h,i,j;
+            a=$(this);
+            c=a.parents('.third-panel').find("input[type='checkbox']").length;
+            d=a.parents('.third-panel').siblings('.checkbox2');
+            e=d.attr('data-checked');
+            i=a.attr("data-checked");
+            if(e){
+                k(a,false);
+                k(d,false);
+            }else{
+                if(i){
+                    k(a,false);
+                }else{
+                    k(a,true);
+                    b=a.parents('.third-panel').find("input[data-checked").length;
+                    if(b>=c){
+                        k(d,true);
+                    }
+                }
+            }
+        });
+        ck.click(function(){
+            var m,n;
+            m=c1.siblings('.second-panel').find("input[data-checked='checked']").length;
+            n=$('.second-panel').find("input").length;
+            if(m>=n){
+                k(c1,true)
+            }else{
+                k(c1,false)
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>
