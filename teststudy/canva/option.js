@@ -1,0 +1,19 @@
+var bar = document.getElementById("bar"),
+        data = {
+            label: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],//x轴的标题
+            dataSets: [{
+                bDistance: 30, //绘制的边框距离画布边框的距离
+                bInterval: 20, //两个柱状图之间的距离
+                values: [300, 50, 100, 50, 80, 150, 120], //对应标签的值
+                fillColor: "rgba(0,0,255,0.5)" //矩形填充颜色
+            }, {
+                txtfont: "14px microsoft yahei",//绘制文本的字体
+                txtalgin: "center",//文本对齐方式
+                txtbaseline: "middle"//文本的基线
+            }, {
+                fillColor: "black", //矩形填充颜色
+                xtitle: "订单总数（个）", //x轴标题
+                ytitle: "星期几" //y轴标题
+            }]
+        };
+    barChart(bar, data); //画柱状图

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<script>
+// Using https://rawgithub.com/auchenberg/WebNotification.js/master/WebNotification.js as a external lib.
+
+$(function() {
+
+    $('.request').on('click', function() {
+        window.Notification.requestPermission(function() {
+            alert('Permissions state: ' + window.Notification.permission);
+        });
+    });
+
+    $('.show').on('click', function() {
+
+        if(window.Notification.permission !== 'granted') {
+            alert('Permissions hasnt been granted');
+        }
+
+        new window.Notification('This is a test');        
+    });    
+
+})
+</script>
+
+<button class="request">Request permissions</button>
+<button class="show">Show notification</button>
+</body>
+
+</html>

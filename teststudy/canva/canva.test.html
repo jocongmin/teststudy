@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    <canvas id='tst'></canvas>
+</body>
+<script src='jquery-2.1.4.min.js'></script>
+<script src='jcanvas.min.js'></script>
+<script>
+// Draw a circle
+// Draw a circle
+$('canvas').drawVector({
+  strokeStyle: '#000',
+  strokeWidth: 4,
+  rounded: true,
+  endArrow: true,
+  arrowRadius: 15,
+  arrowAngle: 90,
+  x: 50, y: 50,
+  a1: 180, l1: 100,
+  a2: 90, l2: 100
+});
+</script>
+
+</html>

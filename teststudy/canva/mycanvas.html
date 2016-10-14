@@ -1,0 +1,148 @@
+<!Doctype Html>
+<html>
+
+<head>
+    <title>Line Chart Demo</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <style>
+        body {
+            background-color: #bfd0c4;
+        }
+
+        canvas {
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -350px;
+            margin-top: -250px;
+            box-shadow: 3px 3px 3px #7e7a7c;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="700" height="400" id="canvas"> </canvas>
+    <script>
+    (function () {
+  var canvas = document.createElement("canvas");
+  canvas.width = 800;
+  canvas.height = 400;
+  canvas.innerText = "抱歉，你的浏览器不支持canvas T_T";
+  document.getElementById('leoncanvas1').appendChild(canvas);
+
+  var data = { "aaa": 1000, "bbb": 600, "ccc": 200, "ddd": 400, "eee": 550, "fff": 50, "ggg": 10, "hhh": 280 };
+  var yAxisValueStep = 100;
+
+  var width = canvas.width;
+  var height = canvas.height;
+
+  // data length calc & value analysis
+  var length = 0, min = 0, max = 0;
+
+  for (var i in data) {
+      length++;
+      if (data[i] < min)
+          min = data[i];
+      if (data[i] > max)
+          max = data[i];
+  }
+
+  var xLength = width * 0.9;
+  var yLength = height * 0.7;
+  var left = width * 0.12;
+  var bottom = height * 0.08;
+
+  // origin point
+  var x0 = left;
+  var y0 = height - bottom;
+
+  var p0 = { x: x0, y: y0 };
+  var px = { x: left + xLength, y: p0.y };
+  var py = { x: p0.x, y: p0.y - yLength };
+
+  var xScaleMarkWidth = xLength / (length + 3);
+  var yScaleMarkWidth = yLength / (length + 3);
+
+  // begin to draw axis
+  var context = canvas.getContext('2d');
+  context.beginPath();
+  // offset 0.5 to draw 1 pixel line
+  //http://kilianvalkhof.com/2010/design/the-problem-with-svg-and-canvas/
+  // xAxis
+  context.moveTo(p0.x + 0.5, p0.y + 0.5);
+  context.lineTo(px.x + 0.5, px.y + 0.5);
+  // yAxis
+  context.moveTo(p0.x + 0.5, p0.y + 0.5);
+  context.lineTo(py.x + 0.5, py.y + 0.5);
+
+  // scale marker
+  for (var i = 0; i < length + 2; i++) {
+      // xaxis
+      context.moveTo(p0.x + (i + 1) * xScaleMarkWidth + 0.5, p0.y + 0.5);
+      context.lineTo(p0.x + (i + 1) * xScaleMarkWidth + 0.5, p0.y + 2 + 0.5);
+
+      // yaxis
+      context.moveTo(p0.x + 0.5, p0.y - (i + 1) * yScaleMarkWidth + 0.5);
+      context.lineTo(p0.x + 0.5 - 2, p0.y - (i + 1) * yScaleMarkWidth + 0.5);
+  }
+
+  // y axis marker value
+  for (var i = 0; i <= length + 2; i++) {
+      // yaxis value
+      context.fillText(yAxisValueStep * i, p0.x + 0.5 - 30, p0.y - i * yScaleMarkWidth + 3);
+  }
+
+  // draw column chart
+  var lengthPerValue = (yScaleMarkWidth * (length + 2)) / max;
+  //var rectX, rectY;
+  var x, y;
+  var i = 0;
+
+  context.font = "normal lighter 12px sans-serif";
+
+  // set axis text & marker
+  for (var p in data) {
+      x = p0.x + (i + 1) * xScaleMarkWidth + 0.5;
+      y = p0.y - lengthPerValue * data[p];
+
+      // add text
+      context.fillStyle = 'rgb(0,0,0)';
+
+      // point value
+      context.fillText(data[p], x, y - 15);
+      // x value
+      context.fillText(p, x + xScaleMarkWidth * 0.1, y + lengthPerValue * data[p] + 20);
+      i++;
+  }
+
+  context.stroke();
+  context.closePath();
+
+  context.beginPath();
+  context.strokeStyle = "rgba(255,0,0,0.8)";
+  context.lineCap = "square";
+  context.lineJoin = "miter";
+  context.lineWidth = 2;
+
+  i = 0;
+  for (var p in data) {
+      x = p0.x + (i + 1) * xScaleMarkWidth + 0.5;
+      y = p0.y - lengthPerValue * data[p];
+
+      if (i == 0) {
+          context.moveTo(x, y);
+      }
+      else {
+          context.lineTo(x, y);
+      }
+      i++;
+  }
+
+  context.stroke();
+  context.closePath();
+})();
+    </script>
+</body>
+
+</html>

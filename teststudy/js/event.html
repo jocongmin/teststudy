@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="father">
+        <div class="child">
+            <div class="btn">
+                <button class="btn">btn</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+var father = document.querySelector('.father')
+father.addEventListener('click', function() {
+    alert('father btn')
+}, true) //in father-to-child event do event
+var btn = document.querySelector('.btn')
+btn.addEventListener('click', function() {
+    alert('child btn')
+}, false) //in child-to-father do event
+
+//first alert father,s then alert child,s
+</script>
+
+</html>
