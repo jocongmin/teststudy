@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+    .bar {
+        height: 30px;
+        background-color: #cd0000;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 120px;
+        /* Safari下z-index无效 */
+        z-index: 99;
+        transform: translateZ(500px);  //solve way is translateZ more leave
+    }
+    
+    .box {
+        text-align: center;
+    }
+    
+    .rotate {
+        transform: perspective(300px) rotateY(40deg);
+    }
+    </style>
+    <div class="bar"></div>
+    <div class="box">
+        <img class="rotate" src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg">
+    </div>
+</body>
+
+</html>

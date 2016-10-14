@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">btn</button>
+</body>
+<script>
+const btn = document.querySelector('#btn')
+btn.onclick = function() {
+    var promise = new Promise(function(resolve, reject) {
+        const rt = 2;
+        if (rt===1) {
+            resolve('ok');
+        } else {
+            reject('nook');
+        }
+    })
+    promise.then((value) => {//one program dided then can do other thing
+        console.log(value)
+    }).catch((state) => {
+        console.log(state)
+    })
+}
+</script>
+
+</html>
