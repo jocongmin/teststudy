@@ -1,0 +1,35 @@
+{
+  "name": "polymer-js",
+  "version": "1.0.5",
+  "authors": [
+    "Greenify <mrgreenify@gmail.com>"
+  ],
+  "description": "Provides the plain JS code of polymer",
+  "main": "polymer.js",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "polymer"
+  ],
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/greenify/polymer-js",
+  "_release": "1.0.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.5",
+    "commit": "1c3a27314acfda7151d4575d9ac44c5f135fa112"
+  },
+  "_source": "https://github.com/greenify/polymer-js.git",
+  "_target": "^1.0.5",
+  "_originalSource": "polymer-js",
+  "_direct": true
+}
