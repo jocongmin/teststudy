@@ -74,7 +74,7 @@ gulp.task('webserver', function() {
 gulp.task('weinre', function() {
     gulpWeinre({
         httpPort: '8086',
-        boundHost: '192.168.7.143'
+        boundHost: '-all-'
     })
 })
 
