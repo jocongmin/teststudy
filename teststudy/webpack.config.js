@@ -2,6 +2,7 @@ var webpackUglifyJsPlugin = require('webpack-uglify-js-plugin');
 var SpritesmithPlugin = require('webpack-spritesmith');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var templateFunction = function(data) {
     var shared = '.bg { background-image: url(I) }'
         .replace('I', data.sprites[0].image);
@@ -28,10 +29,10 @@ var templateFunction = function(data) {
 };
 
 module.exports = {
-    entry: ["./src/main.js", "./src/scss/style.scss"],
+    entry: "./src/main.js",
     output: {
-        path:'./dist/',
-        filename: "[name].bundle.js",
+        path: __dirname+'/dist/',
+        filename: "bundle.js",
     },
     module: {
         loaders: [{
@@ -67,13 +68,13 @@ module.exports = {
         new ExtractTextPlugin('style.css'),
         new SpritesmithPlugin({
             src: {
-                cwd: path.resolve(__dirname, 'src/icon'),
+                cwd: path.resolve(__dirname, 'src/img/icon'),
                 glob: '*.png'
             },
             target: {
-                image: path.resolve(__dirname, 'src/spritesmith-generated/sprite.png'),
+                image: path.resolve(__dirname, 'src/img/sprite.png'),
                 css: [
-                    [path.resolve(__dirname, 'src/spritesmith-generated/sprite.css'), {
+                    [path.resolve(__dirname, 'src/scss/sprite.scss'), {
                         format: 'function_based_template'
                     }]
                 ]
@@ -84,6 +85,11 @@ module.exports = {
             apiOptions: {
                 cssImageRef: "sprite.png"
             },
+        }),
+        new HtmlWebpackPlugin({
+            title: 'index',
+            hash:true,
+            template: 'index.ejs', // Load a custom template (ejs by default see the FAQ for details)
         })
     ]
 }
